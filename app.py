@@ -227,4 +227,6 @@ def internal_error(error):
     return jsonify({'error': 'Internal server error'}), 500
 
 if __name__ == '__main__':
+    if not(os.path.isdir('chroma_db/')):
+         os.system("python another_script.py")
     app.run(debug=True, host='0.0.0.0', port=7860)
