@@ -228,5 +228,6 @@ def internal_error(error):
 
 if __name__ == '__main__':
     if not(os.path.isdir('chroma_db/')):
-         os.system("python another_script.py")
+         os.system("python build_vector_db.py")
+
     app.run(debug=True, host='0.0.0.0', port=7860)
