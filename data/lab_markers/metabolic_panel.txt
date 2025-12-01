@@ -1,0 +1,45 @@
+Comprehensive Metabolic Panel (CMP)
+
+GLUCOSE (Blood Sugar)
+Normal Range: 70-100 mg/dL (fasting)
+What it measures: Amount of sugar in your blood
+High (Hyperglycemia): May indicate diabetes, prediabetes, stress, or certain medications
+- Symptoms: Increased thirst, frequent urination, fatigue, blurred vision
+- Dietary changes: Reduce refined carbs, increase fiber, choose whole grains
+- Lifestyle: Regular exercise, maintain healthy weight, manage stress
+Low (Hypoglycemia): May indicate insulin overproduction or certain medications
+- Symptoms: Shakiness, sweating, confusion, hunger
+- What to do: Eat small frequent meals, balance carbs with protein
+
+CALCIUM
+Normal Range: 8.5-10.5 mg/dL
+What it measures: Calcium levels for bone health and muscle function
+High: May indicate hyperparathyroidism, certain cancers, or excess vitamin D
+Low: May indicate vitamin D deficiency, malabsorption, or kidney disease
+Foods rich in calcium: Dairy products, leafy greens, fortified plant milk, sardines with bones
+
+SODIUM
+Normal Range: 135-145 mEq/L
+What it measures: Electrolyte balance and hydration
+High: Dehydration, excess salt intake, kidney problems
+Low: Overhydration, heart failure, kidney disease, certain medications
+Balance tips: Moderate salt intake, stay hydrated, eat potassium-rich foods
+
+POTASSIUM
+Normal Range: 3.5-5.0 mEq/L
+What it measures: Electrolyte important for heart and muscle function
+High: Kidney disease, certain medications, excess supplementation
+Low: Diuretics, vomiting, diarrhea, poor diet
+Foods high in potassium: Bananas, potatoes, spinach, beans, avocados
+
+BUN (Blood Urea Nitrogen)
+Normal Range: 7-20 mg/dL
+What it measures: Kidney function
+High: Dehydration, kidney disease, high protein diet
+Low: Liver disease, malnutrition, overhydration
+
+CREATININE
+Normal Range: 0.7-1.3 mg/dL (men), 0.6-1.1 mg/dL (women)
+What it measures: Kidney function
+High: Kidney disease, dehydration, muscle injury
+Low: Low muscle mass, malnutrition

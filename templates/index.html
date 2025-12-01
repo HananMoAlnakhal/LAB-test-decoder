@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab Report Decoder - AI-Powered Medical Analysis</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon">🩸</span>
+                <span class="logo-text">Lab Report Decoder</span>
+            </div>
+            <nav class="nav">
+                <a href="#home" class="nav-link active" onclick="showSection('upload')">Upload</a>
+                <a href="#results" class="nav-link" onclick="showSection('results')">Results</a>
+                <a href="#chat" class="nav-link" onclick="showSection('chat')">Ask Questions</a>
+                <a href="#summary" class="nav-link" onclick="showSection('summary')">Summary</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            
+            <!-- Upload Section -->
+            <section id="upload-section" class="section active">
+                <div class="hero">
+                    <h1 class="hero-title">Understand Your Lab Results</h1>
+                    <p class="hero-subtitle">Upload your lab report PDF and get plain English explanations powered by AI</p>
+                </div>
+
+                <div class="upload-card">
+                    <div class="upload-area" id="uploadArea">
+                        <div class="upload-icon">📄</div>
+                        <h3>Drop your lab report PDF here</h3>
+                        <p>or click to browse</p>
+                        <input type="file" id="fileInput" accept=".pdf" hidden>
+                        <button class="btn btn-primary" onclick="document.getElementById('fileInput').click()">
+                            Choose File
+                        </button>
+                    </div>
+                    <div id="uploadProgress" class="upload-progress hidden">
+                        <div class="spinner"></div>
+                        <p>Analyzing your report...</p>
+                    </div>
+                </div>
+
+                <div class="features">
+                    <div class="feature-card">
+                        <div class="feature-icon">🔍</div>
+                        <h3>Automatic Extraction</h3>
+                        <p>Extracts all test results from your PDF</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🧠</div>
+                        <h3>AI-Powered Analysis</h3>
+                        <p>Uses medical literature to explain results</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🍎</div>
+                        <h3>Dietary Tips</h3>
+                        <p>Get personalized nutrition recommendations</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Results Section -->
+            <section id="results-section" class="section">
+                <h2 class="section-title">Your Lab Results</h2>
+                <div id="resultsContainer" class="results-container">
+                    <div class="empty-state">
+                        <p>Upload a lab report to see results here</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Chat Section -->
+            <section id="chat-section" class="section">
+                <h2 class="section-title">Ask Questions</h2>
+                <div class="chat-container">
+                    <div id="chatMessages" class="chat-messages">
+                        <div class="empty-state">
+                            <p>Ask questions like:</p>
+                            <ul>
+                                <li>"What foods should I eat if my iron is low?"</li>
+                                <li>"Why might my glucose be high?"</li>
+                                <li>"What lifestyle changes can help with cholesterol?"</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="chat-input-container">
+                        <input type="text" id="chatInput" class="chat-input" placeholder="Ask a question about your results..." />
+                        <button class="btn btn-primary" onclick="askQuestion()">Send</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Summary Section -->
+            <section id="summary-section" class="section">
+                <h2 class="section-title">Overall Summary</h2>
+                <div id="summaryStats" class="summary-stats hidden">
+                    <div class="stat-card stat-normal">
+                        <div class="stat-value" id="normalCount">0</div>
+                        <div class="stat-label">Normal</div>
+                    </div>
+                    <div class="stat-card stat-high">
+                        <div class="stat-value" id="highCount">0</div>
+                        <div class="stat-label">High</div>
+                    </div>
+                    <div class="stat-card stat-low">
+                        <div class="stat-value" id="lowCount">0</div>
+                        <div class="stat-label">Low</div>
+                    </div>
+                </div>
+                <div id="summaryContent" class="summary-content">
+                    <div class="empty-state">
+                        <p>Upload and analyze a lab report to see summary</p>
+                    </div>
+                </div>
+                <button id="generateSummaryBtn" class="btn btn-primary hidden" onclick="generateSummary()">
+                    Generate Summary
+                </button>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>⚠️ This tool is for educational purposes only. Always consult your healthcare provider for medical advice.</p>
+            <p class="footer-credit">Made with ❤️ for better health literacy</p>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+Complete Blood Count (CBC)
+
+A Complete Blood Count measures several components of your blood to assess overall health and detect disorders.
+
+WHITE BLOOD CELLS (WBC/Leukocytes)
+Normal Range: 4,500-11,000 cells/mcL
+What it measures: White blood cells fight infections
+High WBC: May indicate infection, inflammation, leukemia, stress, or tissue damage
+Low WBC: May indicate bone marrow problems, autoimmune disorders, or certain medications
+Dietary support: Vitamin C (citrus, bell peppers), Vitamin E (nuts, seeds), zinc (shellfish, legumes)
+
+RED BLOOD CELLS (RBC/Erythrocytes)
+Normal Range: 
+- Men: 4.7-6.1 million cells/mcL
+- Women: 4.2-5.4 million cells/mcL
+What it measures: Red blood cells carry oxygen throughout your body
+High RBC: May indicate dehydration, lung disease, or polycythemia
+Low RBC: May indicate anemia, blood loss, or nutritional deficiencies
+
+HEMOGLOBIN (Hgb)
+Normal Range:
+- Men: 13.5-17.5 g/dL
+- Women: 12.0-15.5 g/dL
+What it measures: The oxygen-carrying protein in red blood cells
+High Hemoglobin: Dehydration, lung disease, smoking, high altitude
+Low Hemoglobin (Anemia): Iron deficiency, B12 deficiency, chronic disease, blood loss
+Foods to increase: Red meat, liver, spinach, lentils, fortified cereals, pumpkin seeds
+Take with Vitamin C to enhance iron absorption
+
+HEMATOCRIT (Hct)
+Normal Range:
+- Men: 38.3-48.6%
+- Women: 35.5-44.9%
+What it measures: Percentage of blood volume made up of red blood cells
+High: Dehydration, lung disease, polycythemia
+Low: Anemia, blood loss, malnutrition
+
+PLATELETS
+Normal Range: 150,000-400,000 platelets/mcL
+What it measures: Blood clotting cells
+High: May indicate inflammation, iron deficiency, or bone marrow disorders
+Low: May indicate bleeding disorders, autoimmune conditions, or certain medications
