@@ -1,147 +1,322 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lab Report Decoder - AI-Powered Medical Analysis</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-</head>
-<body>
+
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Link to our simple CSS for toggling sections -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styley.css') }}"
+    />
+
+    <!-- Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Configure Tailwind Colors -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#659BB9" /* Deep Blue */,
+              secondary: "rgb(51 99 176)" /* Bright Blue */,
+              surface: "#ffffff" /* White */,
+              background: "#f8fafc" /* Very Light Blue-Grey */,
+            },
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-background font-sans text-slate-800 h-screen flex flex-col">
     <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <div class="logo">
-                <span class="logo-icon">🩸</span>
-                <span class="logo-text">Lab Report Decoder</span>
-            </div>
-            <nav class="nav">
-                <a href="#home" class="nav-link active" onclick="showSection('upload')">Upload</a>
-                <a href="#results" class="nav-link" onclick="showSection('results')">Results</a>
-                <a href="#chat" class="nav-link" onclick="showSection('chat')">Ask Questions</a>
-                <a href="#summary" class="nav-link" onclick="showSection('summary')">Summary</a>
-            </nav>
+    <header class="bg-primary text-white shadow-lg sticky top-0 z-50">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+          <!-- Logo -->
+          <div
+            class="flex items-center space-x-3 cursor-pointer"
+            onclick="showSection('upload-section')"
+          >
+            <span class="text-2xl">🔬</span>
+            <span class="font-bold text-xl tracking-tight"
+              >Lab Report Decoder</span
+            >
+          </div>
+
+          <!-- Navigation -->
+          <nav class="hidden md:flex space-x-1">
+            <button
+              onclick="showSection('upload-section')"
+              class="nav-btn px-4 py-2 rounded-lg text-sm font-medium hover:bg-white/10 transition-colors text-white/90 hover:text-white"
+            >
+              Upload
+            </button>
+            <button
+              onclick="showSection('results-section')"
+              class="nav-btn px-4 py-2 rounded-lg text-sm font-medium hover:bg-white/10 transition-colors text-white/90 hover:text-white"
+            >
+              Results
+            </button>
+            <button
+              onclick="showSection('chat-section')"
+              class="nav-btn px-4 py-2 rounded-lg text-sm font-medium hover:bg-white/10 transition-colors text-white/90 hover:text-white"
+            >
+              Ask Questions
+            </button>
+            <button
+              onclick="showSection('summary-section')"
+              class="nav-btn px-4 py-2 rounded-lg text-sm font-medium hover:bg-white/10 transition-colors text-white/90 hover:text-white"
+            >
+              Summary
+            </button>
+          </nav>
         </div>
+      </div>
     </header>
 
     <!-- Main Content -->
-    <main class="main">
-        <div class="container">
-            
-            <!-- Upload Section -->
-            <section id="upload-section" class="section active">
-                <div class="hero">
-                    <h1 class="hero-title">Understand Your Lab Results</h1>
-                    <p class="hero-subtitle">Upload your lab report PDF and get plain English explanations powered by AI</p>
-                </div>
-
-                <div class="upload-card">
-                    <div class="upload-area" id="uploadArea">
-                        <div class="upload-icon">📄</div>
-                        <h3>Drop your lab report PDF here</h3>
-                        <p>or click to browse</p>
-                        <input type="file" id="fileInput" accept=".pdf" hidden>
-                        <button class="btn btn-primary" onclick="document.getElementById('fileInput').click()">
-                            Choose File
-                        </button>
-                    </div>
-                    <div id="uploadProgress" class="upload-progress hidden">
-                        <div class="spinner"></div>
-                        <p>Analyzing your report...</p>
-                    </div>
-                </div>
-
-                <div class="features">
-                    <div class="feature-card">
-                        <div class="feature-icon">🔍</div>
-                        <h3>Automatic Extraction</h3>
-                        <p>Extracts all test results from your PDF</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">🧠</div>
-                        <h3>AI-Powered Analysis</h3>
-                        <p>Uses medical literature to explain results</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">🍎</div>
-                        <h3>Dietary Tips</h3>
-                        <p>Get personalized nutrition recommendations</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Results Section -->
-            <section id="results-section" class="section">
-                <h2 class="section-title">Your Lab Results</h2>
-                <div id="resultsContainer" class="results-container">
-                    <div class="empty-state">
-                        <p>Upload a lab report to see results here</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Chat Section -->
-            <section id="chat-section" class="section">
-                <h2 class="section-title">Ask Questions</h2>
-                <div class="chat-container">
-                    <div id="chatMessages" class="chat-messages">
-                        <div class="empty-state">
-                            <p>Ask questions like:</p>
-                            <ul>
-                                <li>"What foods should I eat if my iron is low?"</li>
-                                <li>"Why might my glucose be high?"</li>
-                                <li>"What lifestyle changes can help with cholesterol?"</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="chat-input-container">
-                        <input type="text" id="chatInput" class="chat-input" placeholder="Ask a question about your results..." />
-                        <button class="btn btn-primary" onclick="askQuestion()">Send</button>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Summary Section -->
-            <section id="summary-section" class="section">
-                <h2 class="section-title">Overall Summary</h2>
-                <div id="summaryStats" class="summary-stats hidden">
-                    <div class="stat-card stat-normal">
-                        <div class="stat-value" id="normalCount">0</div>
-                        <div class="stat-label">Normal</div>
-                    </div>
-                    <div class="stat-card stat-high">
-                        <div class="stat-value" id="highCount">0</div>
-                        <div class="stat-label">High</div>
-                    </div>
-                    <div class="stat-card stat-low">
-                        <div class="stat-value" id="lowCount">0</div>
-                        <div class="stat-label">Low</div>
-                    </div>
-                </div>
-                <div id="summaryContent" class="summary-content">
-                    <div class="empty-state">
-                        <p>Upload and analyze a lab report to see summary</p>
-                    </div>
-                </div>
-                <button id="generateSummaryBtn" class="btn btn-primary hidden" onclick="generateSummary()">
-                    Generate Summary
-                </button>
-            </section>
-
+    <main class="flex-grow max-w-5xl w-full mx-auto px-4 sm:px-6 py-8">
+      <!-- SECTION 1: UPLOAD (Default Active) -->
+      <div id="upload-section" class="section active space-y-8">
+        <!-- Hero Text -->
+        <div class="text-center max-w-2xl mx-auto mb-10">
+          <h1 class="text-4xl font-extrabold text-primary mb-4 tracking-tight">
+            Understand Your Lab Results
+          </h1>
+          <p class="text-lg text-slate-500">
+            Upload your PDF report and get plain English explanations, dietary
+            advice, and AI-powered insights.
+          </p>
         </div>
+
+        <!-- Upload Card -->
+        <div
+          class="bg-surface rounded-2xl shadow-xl border border-slate-100 p-10 max-w-3xl mx-auto transition-transform hover:scale-[1.01] duration-300"
+        >
+          <div
+            class="upload-area group border-2 border-dashed border-blue-200 bg-blue-50/50 rounded-xl p-12 text-center hover:border-secondary hover:bg-blue-50 transition-all cursor-pointer"
+            id="uploadArea"
+            onclick="document.getElementById('fileInput').click()"
+          >
+            <div
+              class="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300"
+            >
+              📄
+            </div>
+            <h3 class="text-xl font-semibold text-slate-700 mb-2">
+              Drop your lab report PDF here
+            </h3>
+            <p class="text-slate-500 text-sm mb-6">
+              or click to browse (Max 16MB)
+            </p>
+
+            <input type="file" id="fileInput" accept=".pdf" hidden />
+
+            <button
+              class="bg-secondary text-white px-8 py-3 rounded-full font-medium shadow-md shadow-blue-500/30 hover:bg-blue-600 hover:shadow-blue-500/40 transition-all transform hover:-translate-y-0.5"
+            >
+              Choose File
+            </button>
+          </div>
+
+          <!-- Progress Indicator (Hidden by default) -->
+          <div id="uploadProgress" class="hidden mt-8 text-center">
+            <div
+              class="inline-block animate-spin rounded-full h-8 w-8 border-4 border-blue-200 border-t-secondary"
+            ></div>
+            <p class="text-secondary font-medium mt-3 animate-pulse">
+              Analyzing your report...
+            </p>
+          </div>
+        </div>
+
+        <!-- Features Grid -->
+        <div class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto mt-12">
+          <div
+            class="bg-surface p-6 rounded-xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow"
+          >
+            <div class="text-3xl mb-3">🔍</div>
+            <h3 class="font-semibold text-slate-800">Automatic Extraction</h3>
+            <p class="text-sm text-slate-500 mt-1">
+              Extracts all test values instantly
+            </p>
+          </div>
+          <div
+            class="bg-surface p-6 rounded-xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow"
+          >
+            <div class="text-3xl mb-3">🧠</div>
+            <h3 class="font-semibold text-slate-800">AI Analysis</h3>
+            <p class="text-sm text-slate-500 mt-1">
+              Medical-grade explanations
+            </p>
+          </div>
+          <div
+            class="bg-surface p-6 rounded-xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow"
+          >
+            <div class="text-3xl mb-3">🍎</div>
+            <h3 class="font-semibold text-slate-800">Dietary Tips</h3>
+            <p class="text-sm text-slate-500 mt-1">
+              Personalized nutrition advice
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 2: RESULTS -->
+      <div id="results-section" class="section">
+        <h2 class="text-2xl font-bold text-slate-800 mb-6 flex items-center">
+          <span class="bg-blue-100 text-blue-600 p-2 rounded-lg mr-3 text-xl"
+            >📋</span
+          >
+          Your Results
+        </h2>
+        <div
+          id="resultsContainer"
+          class="bg-surface rounded-xl shadow-lg border border-slate-100 min-h-[400px] p-6"
+        >
+          <div
+            class="flex flex-col items-center justify-center h-full text-slate-400 py-20"
+          >
+            <div class="text-6xl mb-4 opacity-20">📊</div>
+            <p>Upload a lab report to view results here</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 3: CHAT -->
+      <div id="chat-section" class="section h-[calc(100vh-12rem)]">
+        <div
+          class="flex flex-col h-full bg-surface rounded-xl shadow-lg border border-slate-100 overflow-hidden"
+        >
+          <div class="bg-slate-50 border-b border-slate-100 p-4">
+            <h2 class="font-bold text-slate-700">Ask Questions</h2>
+            <p class="text-xs text-slate-500">
+              Ask about your specific values, diet, or lifestyle.
+            </p>
+          </div>
+
+          <!-- Chat Area -->
+          <div
+            id="chatMessages"
+            class="flex-grow overflow-y-auto p-6 space-y-4 bg-white"
+          >
+            <div class="text-center text-slate-400 py-10">
+              <p class="mb-4">Try asking:</p>
+              <div class="inline-flex flex-col gap-2 text-sm text-blue-600">
+                <span
+                  class="bg-blue-50 px-3 py-1 rounded-full cursor-pointer hover:bg-blue-100"
+                  >"Is my cholesterol dangerous?"</span
+                >
+                <span
+                  class="bg-blue-50 px-3 py-1 rounded-full cursor-pointer hover:bg-blue-100"
+                  >"What foods lower iron?"</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Input Area -->
+          <div class="p-4 border-t border-slate-100 bg-slate-50">
+            <div class="flex gap-2">
+              <input
+                type="text"
+                id="chatInput"
+                class="flex-grow px-4 py-3 rounded-xl border border-slate-300 focus:border-secondary focus:ring-2 focus:ring-blue-100 outline-none transition-all"
+                placeholder="Type your medical question..."
+              />
+              <button
+                onclick="askQuestion()"
+                class="bg-secondary text-white px-6 rounded-xl font-medium hover:bg-blue-600 transition-colors shadow-sm"
+              >
+                Send
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 4: SUMMARY -->
+      <div id="summary-section" class="section">
+        <h2 class="text-2xl font-bold text-slate-800 mb-6 flex items-center">
+          <span
+            class="bg-purple-100 text-purple-600 p-2 rounded-lg mr-3 text-xl"
+            >📝</span
+          >
+          Health Summary
+        </h2>
+
+        <!-- Stats Row -->
+        <div id="summaryStats" class="grid grid-cols-3 gap-4 mb-6 hidden">
+          <div class="bg-green-50 p-4 rounded-xl border border-green-100">
+            <div class="text-3xl font-bold text-green-600" id="normalCount">
+              0
+            </div>
+            <div class="text-sm text-green-700 font-medium">Normal Ranges</div>
+          </div>
+          <div class="bg-red-50 p-4 rounded-xl border border-red-100">
+            <div class="text-3xl font-bold text-red-600" id="highCount">0</div>
+            <div class="text-sm text-red-700 font-medium">High Values</div>
+          </div>
+          <div class="bg-yellow-50 p-4 rounded-xl border border-yellow-100">
+            <div class="text-3xl font-bold text-yellow-600" id="lowCount">
+              0
+            </div>
+            <div class="text-sm text-yellow-700 font-medium">Low Values</div>
+          </div>
+        </div>
+
+        <div
+          id="summaryContent"
+          class="bg-surface rounded-xl shadow-lg border border-slate-100 p-8 min-h-[200px]"
+        >
+          <div class="text-center text-slate-400 py-10">
+            <p>Analysis summary will appear here after upload</p>
+          </div>
+        </div>
+
+        <button
+          id="generateSummaryBtn"
+          onclick="generateSummary()"
+          class="hidden mt-6 w-full py-3 bg-white border-2 border-secondary text-secondary font-bold rounded-xl hover:bg-blue-50 transition-colors"
+        >
+          Regenerate Detailed Summary
+        </button>
+      </div>
     </main>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>⚠️ This tool is for educational purposes only. Always consult your healthcare provider for medical advice.</p>
-            <p class="footer-credit">Made with ❤️ for better health literacy</p>
-        </div>
+    <footer class="bg-white border-t border-slate-200 py-6 mt-auto">
+      <div class="max-w-4xl mx-auto text-center px-4">
+        <p
+          class="text-sm text-red-500 font-medium bg-red-50 inline-block px-4 py-1 rounded-full mb-2"
+        >
+          ⚠️ Educational Purpose Only - Not Medical Advice
+        </p>
+        <p class="text-xs text-slate-400">
+          Always consult a professional healthcare provider for diagnosis and
+          treatment.
+        </p>
+      </div>
     </footer>
 
     <!-- Toast Notification -->
-    <div id="toast" class="toast"></div>
+    <div
+      id="toast"
+      class="fixed bottom-5 right-5 bg-slate-800 text-white px-6 py-3 rounded-lg shadow-2xl transform translate-y-20 opacity-0 transition-all duration-300 z-50"
+    ></div>
 
     <script src="{{ url_for('static', filename='script.js') }}"></script>
-</body>
+  </body>
 </html>
